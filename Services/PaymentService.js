@@ -1,5 +1,7 @@
 const axios = require("axios");
-const { redirect } = require("express/lib/response");
+const {
+  redirect
+} = require("express/lib/response");
 
 class PaymentService {
   async createPayment(req, res) {
@@ -7,13 +9,11 @@ class PaymentService {
     const body = {
 
       payer_email: "test_user_11567634@testuser.com",
-      items: [
-        {
-          title: req.title,
-          quantity: req.quantity,
-          unit_price: req.price
-        },
-      ],
+      items: [{
+        title: req.title,
+        quantity: req.quantity,
+        unit_price: req.price
+      }, ],
       back_urls: {
         success: "https://www.success.com",
         failure: "https://www.failure.com",
@@ -28,12 +28,12 @@ class PaymentService {
       },
     })
 
-    .then(function(response){
-      console.log(response.data.init_point)
-      redirect(response.data.init_point)
-    })
-    
-    //return payment.data;
+
+
+    return payment.data;
+
+    // console.log("esto es el payment Service part 1: " + payment.data.init_point);
+    // return payment.data.init_point;
   }
 }
 
